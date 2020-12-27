@@ -18,3 +18,14 @@ body {
    */
   background-image: url('./images/bg-pattern.png');
 }
+
+.container {
+  text-align: center;
+}
+.input-text {
+  font-size: 28px;
+  line-height: 1.2;
+  text-align: center;
+  margin: 40px;
+  width: 538px;
+}
