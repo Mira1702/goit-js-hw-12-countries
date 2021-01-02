@@ -1,24 +1,40 @@
-// import debounce from 'lodash.debounce';
-// // import fetchCountries from './js/fetchCountries';
-// import { error } from '@pnotify/core';
+import debounce from 'lodash.debounce';
 // import '@pnotify/core/dist/PNotify.css';
-// import '@pnotify/core/dist/BrightTheme.css';
-// import './styles.css';
+// // // import '@pnotify/core/dist/BrightTheme.css';
+// // // import '@pnotify/core';
+// // import fetchCountries from './js/fetchCountries';
+// // import './tamplate/manyCountries.hbs';
+// // import './tamplate/oneCountry.hbs'
+// import * as refs from './js/refs';
+// // import './styles.css';
 
+// refs = require('./js/refs');
 
-function fetchCountries(surchQuery) {
-    const url = `https://restcountries.eu/rest/v2/name/${surchQuery}`;
-    return fetch(url)
-        .then(result => result.json())
-        .then(data => console.log(data));
-};
-export default fetchCountries;
-// fetchCountries(surchQuery);
+// const refs = {
+//     inputSearch: document.querySelector('.js-input'),
+//     searchForm: document.querySelector('.js-search-form'),
+//     articlesContainer: document.querySelector('.js-articles'),
+// };
 
-// fetch('http://hn.algolia.com/api/v1/search?query=react')
-//     .then(res => res.json())
-//     .then(data => console.log(data));
+// refs.inputSearch.addEventListener('input', 500);
+// refs.inputSearch.addEventListener('input', debounce(countrySearch, 500));
 
-// fetch('https://restcountries.eu/rest/v2/name/${searchQuery}')
-//         .then(result => result.json())
-//         .then(data => console.log(data));
+function countrySearch() {
+  let currentCountry = refs.inputSearch.value;
+  if (currentCountry !== '') {
+    fetchCountries(currentCountry)
+      .then(data => {
+        if (!data) {
+          return;
+        }
+        renderPage(data);
+      })
+      .catch(error => {
+        console.log(error);
+        showNotificationFail();
+        refs.inputSearch.value = '';
+        clearPage();
+      });
+  }
+  clearPage();
+}
