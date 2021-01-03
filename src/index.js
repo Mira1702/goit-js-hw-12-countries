@@ -35,7 +35,8 @@ function searchCountry(e) {
   e.preventDefault();
   clearArticlesContainer();
    const searchQuery = e.target.value;
-    
+  
+  
     fetchCountries(searchQuery).then(data => {
     
       if (data.length > 10) {
