@@ -1,4 +1,4 @@
-{{#each this}}
+{{!-- {{#each this}}
 <h1 class="country"> {{name}}</h1>
 <div class="form_country">
     <ul>
@@ -11,4 +11,17 @@
     </ul>
     <ul><img src="{{flag}}" alt="" class="flag" /></ul>
 </div>
-{{/each}}
+{{/each}} --}}
+
+<h1 class="country"> {{name}}</h1>
+<div class="country-data">
+    <ul class="country-data-list">
+        <p><span class="text">Capital: </span>{{capital}}</p>
+        <p><span class="text">Population: </span>{{population}}</p>
+        <ul><span class="text">Languages:</span>{{#each languages}}
+            <li>{{name}}</li>
+            {{/each}}
+        </ul>
+    </ul>
+    <ul><img src="{{flag}}" alt="" class="flag" /></ul>
+</div>
