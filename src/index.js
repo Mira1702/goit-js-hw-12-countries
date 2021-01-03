@@ -6,8 +6,28 @@ import oneCountry from './tamplate/oneCountry.hbs';
 import debounce from 'lodash.debounce';
 import 'handlebars';
 import '@pnotify/core';
+// import { error, info, defaultModules } from '@pnotify/core/dist/PNotify.js';
+// import * as PNotifyMobile from '@pnotify/mobile/dist/PNotifyMobile.js';
+import '@pnotify/core/dist/PNotify.css';
+import '@pnotify/core/dist/BrightTheme.css';
 
 const { error } = require('@pnotify/core');
+
+function noMatchNotification() {
+    defaultModules.set(PNotifyMobile, {});
+  error({    
+    text: 'No country has been found. Please enter a correct information!',
+    delay: 2000,
+  });
+}
+
+function tooMactchNotification() {
+    defaultModules.set(PNotifyMobile, {});
+  info({
+    text: 'Too many matches found. Please enter a correct information!',
+    delay: 2000,
+  });
+}
 
 refs.inputSearch.addEventListener('input', debounce(searchCountry, 500));
 
@@ -44,26 +64,4 @@ function buildListMarkup(countries, template) {
 function clearArticlesContainer() {
   refs.articlesContainer.innerHTML = '';
 }
-
-function noMatchNotification() {
-    defaultModules.set(PNotifyMobile, {});
-  error({    
-    text: 'No country has been found. Please enter a more specific query!',
-    delay: 2000,
-  });
-}
-
-function tooMactchNotification() {
-    defaultModules.set(PNotifyMobile, {});
-  info({
-    text: 'Too many matches found. Please enter a more specific query!',
-    delay: 2000,
-  });
-}
-
-
-// fetch('https://restcountries.eu/rest/v2')
-//     .then(response => response.json())
-//     .then(data => console.log(data));
-
 

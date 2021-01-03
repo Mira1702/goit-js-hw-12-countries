@@ -12,6 +12,7 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     Oxygen-Sans, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+  background-color: lavender;
 }
 
 .js-search-form {
@@ -25,17 +26,13 @@ body {
   margin: 50px;
   width: 550px;
 }
-
+.js-input:hover,
+.js-input:focus {
+  border-color: rebeccapurple;
+}
 .container {
   text-align: center;
 }
-/* .input-text {
-  font-size: 28px;
-  line-height: 1.2;
-  text-align: center;
-  margin: 40px;
-  width: 538px;
-} */
 
 .country-data {
   display: flex;
