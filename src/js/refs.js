@@ -4,5 +4,4 @@ const refs = {
     articlesContainer: document.querySelector('.js-articles'),
 };
 
-// export default refs;
-// module.exports.refs = refs;
+export default refs;

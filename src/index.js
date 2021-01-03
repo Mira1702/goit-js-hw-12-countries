@@ -1,40 +1,56 @@
+import './styles.css'
+import './js/refs.js';
+import fetchCountries from './js/fetchCountries.js';
+import './tamplate/manyCountries.hbs';
+import './tamplate/oneCountry.hbs';
 import debounce from 'lodash.debounce';
-// import '@pnotify/core/dist/PNotify.css';
-// // // import '@pnotify/core/dist/BrightTheme.css';
-// // // import '@pnotify/core';
-// // import fetchCountries from './js/fetchCountries';
-// // import './tamplate/manyCountries.hbs';
-// // import './tamplate/oneCountry.hbs'
-// import * as refs from './js/refs';
-// // import './styles.css';
+import 'handlebars';
+import '@pnotify/core';
 
-// refs = require('./js/refs');
+const refs = {
+    inputSearch: document.querySelector('.js-input'),
+    searchForm: document.querySelector('.js-search-form'),
+    articlesContainer: document.querySelector('.js-articles'),
+};
+console.log(inputSearch)
 
-// const refs = {
-//     inputSearch: document.querySelector('.js-input'),
-//     searchForm: document.querySelector('.js-search-form'),
-//     articlesContainer: document.querySelector('.js-articles'),
-// };
+refs.inputSearch.addEventListener('input', debounce(searchCountry, 500));
 
-// refs.inputSearch.addEventListener('input', 500);
-// refs.inputSearch.addEventListener('input', debounce(countrySearch, 500));
-
-function countrySearch() {
-  let currentCountry = refs.inputSearch.value;
-  if (currentCountry !== '') {
-    fetchCountries(currentCountry)
-      .then(data => {
-        if (!data) {
-          return;
-        }
-        renderPage(data);
-      })
-      .catch(error => {
-        console.log(error);
-        showNotificationFail();
-        refs.inputSearch.value = '';
-        clearPage();
+function searchCountry(e) {
+  e.preventDefault();
+  clearArticlesContainer();
+   const searchQuery = e.target.value;
+  
+  
+  fetchCountries.fetchArticles(searchQuery).then(data => {
+    
+      if (data.length > 10) {
+          error({
+              text: "Too many matches found. Please enter a more specific query!"
+          });
+      } else if (data.status === 404) {
+        error({
+          text: "No country has been found. Please enter a more specific query!"
       });
-  }
-  clearPage();
+      } else if (data.length === 1) {
+          buildListMarkup(data, oneCountry);
+      } else if (data.length <= 10) {
+          buildListMarkup(data, manyCountries);
+      }
+  })
+  .catch(Error => {
+      Error({
+          text: "You must enter query parameters!"
+      });
+      console.log(Error)
+  })
+}
+
+function buildListMarkup(countries, template) {
+  const markup = countries.map(count => template(count)).join();
+  refs.articlesContainer.insertAdjacentHTML('afterbegin', markup)
+}
+
+function clearArticlesContainer() {
+  refs.articlesContainer.innerHTML = '';
 }

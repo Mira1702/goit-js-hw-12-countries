@@ -1,15 +1,3 @@
-// function fetchCountries(name) {
-//   return fetch(
-//     `https://restcountries.eu/rest/v2/name/${name}?fields=name;population;flag;languages;capital`,
-//   ).then(response => {
-//     if (response.ok) return response.json();
-//     throw new Error('Error fetching data');
-//   });
-// }
-// export default fetchCountries;
-
-// import { name } from "file-loader";
-
 function fetchCountries(searchQuery) {
     const url = `https://restcountries.eu/rest/v2/name/${searchQuery}`;
     return fetch(url)
