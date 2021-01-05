@@ -6,12 +6,12 @@ import oneCountry from './tamplate/oneCountry.hbs';
 import debounce from 'lodash.debounce';
 import 'handlebars';
 import '@pnotify/core';
-// import { error, info, defaultModules } from '@pnotify/core/dist/PNotify.js';
-// import * as PNotifyMobile from '@pnotify/mobile/dist/PNotifyMobile.js';
+import { error, info, defaultModules } from '@pnotify/core/dist/PNotify.js';
+import * as PNotifyMobile from '@pnotify/mobile/dist/PNotifyMobile.js';
 import '@pnotify/core/dist/PNotify.css';
 import '@pnotify/core/dist/BrightTheme.css';
 
-const { error } = require('@pnotify/core');
+// const { error } = require('@pnotify/core');
 
 function noMatchNotification() {
     defaultModules.set(PNotifyMobile, {});
@@ -21,7 +21,7 @@ function noMatchNotification() {
   });
 }
 
-function tooMactchNotification() {
+function tooMatchNotification() {
     defaultModules.set(PNotifyMobile, {});
   info({
     text: 'Too many matches found. Please enter a correct information!',
@@ -40,7 +40,7 @@ function searchCountry(e) {
     fetchCountries(searchQuery).then(data => {
     
       if (data.length > 10) {
-          tooMactchNotification();          
+          tooMatchNotification();          
       } else if (data.length < 1) {        
           noMatchNotification();      
       } else if (data.length === 1) {
