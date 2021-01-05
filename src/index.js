@@ -53,7 +53,6 @@ function searchCountry(e) {
       console.log(error); 
       noMatchNotification();
     });     
-  
 }
 
 function buildListMarkup(countries, template) {
