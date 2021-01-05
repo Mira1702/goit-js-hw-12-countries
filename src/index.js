@@ -30,6 +30,13 @@ function tooMatchNotification() {
 }
 
 refs.inputSearch.addEventListener('input', debounce(searchCountry, 500));
+refs.searchForm.addEventListener('keypress', inputEnter);
+
+function inputEnter(event) {
+  if(event.keyCode == 13){
+        event.preventDefault()
+    }
+}
 
 function searchCountry(e) {
   e.preventDefault();
@@ -41,7 +48,7 @@ function searchCountry(e) {
     
       if (data.length > 10) {
           tooMatchNotification();          
-      } else if (data.length < 1) {        
+      } else if (data.length = 1) {        
           noMatchNotification();      
       } else if (data.length === 1) {
           buildListMarkup(data, oneCountry);
