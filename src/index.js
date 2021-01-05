@@ -48,7 +48,7 @@ function searchCountry(e) {
     
       if (data.length > 10) {
           tooMatchNotification();          
-      } else if (data.length = 1) {        
+      } else if (data.status === 404) {        
           noMatchNotification();      
       } else if (data.length === 1) {
           buildListMarkup(data, oneCountry);
