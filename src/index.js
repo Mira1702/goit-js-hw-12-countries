@@ -70,4 +70,3 @@ function buildListMarkup(countries, template) {
 function clearArticlesContainer() {
   refs.articlesContainer.innerHTML = '';
 }
-
