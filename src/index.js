@@ -13,21 +13,7 @@ import '@pnotify/core/dist/BrightTheme.css';
 
 // const { error } = require('@pnotify/core');
 
-function noMatchNotification() {
-    defaultModules.set(PNotifyMobile, {});
-  error({    
-    text: 'No country has been found. Please enter a correct information!',
-    delay: 2000,
-  });
-}
 
-function tooMatchNotification() {
-    defaultModules.set(PNotifyMobile, {});
-  info({
-    text: 'Too many matches found. Please enter a correct information!',
-    delay: 2000,
-  });
-}
 
 refs.inputSearch.addEventListener('input', debounce(searchCountry, 500));
 refs.searchForm.addEventListener('submit', event => {
@@ -72,4 +58,20 @@ function buildListMarkup(countries, template) {
 
 function clearArticlesContainer() {
   refs.articlesContainer.innerHTML = '';
+}
+
+function noMatchNotification() {
+    defaultModules.set(PNotifyMobile, {});
+  error({    
+    text: 'No country has been found. Please enter a correct information!',
+    delay: 2000,
+  });
+}
+
+function tooMatchNotification() {
+    defaultModules.set(PNotifyMobile, {});
+  info({
+    text: 'Too many matches found. Please enter a correct information!',
+    delay: 2000,
+  });
 }
