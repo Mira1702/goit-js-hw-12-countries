@@ -30,13 +30,16 @@ function tooMatchNotification() {
 }
 
 refs.inputSearch.addEventListener('input', debounce(searchCountry, 500));
-refs.searchForm.addEventListener('keypress', inputEnter);
+refs.searchForm.addEventListener('submit', event => {
+  event.preventDefault()
+ }
+);
 
-function inputEnter(event) {
-  if(event.keyCode == 13){
-        event.preventDefault()
-    }
-}
+// function inputEnter(event) {
+//   if(event.keyCode == 13){
+//         event.preventDefault()
+//     }
+// }
 
 function searchCountry(e) {
   e.preventDefault();
