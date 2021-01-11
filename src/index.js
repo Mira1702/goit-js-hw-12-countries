@@ -26,7 +26,6 @@ refs.searchForm.addEventListener('submit', event => {
 //         event.preventDefault()
 //     }
 // }
-
 function searchCountry(e) {
   e.preventDefault();
   clearArticlesContainer();
